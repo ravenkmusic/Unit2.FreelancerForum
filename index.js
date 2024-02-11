@@ -7,12 +7,49 @@ const freelancers = [{name: "John", specialty: "Programmer", price: 500},
 ];
 console.log(freelancers);
 
-/*const name = document.querySelector("name");
-const job = document.querySelector("specialty");
-const price = document.querySelector("price"); */
-const averagePrice = document.querySelector("#avg-price");
+const body = document.querySelector("body");
 
-function getSum(fee){
+const mainHeading = document.createElement("h1");
+mainHeading.textContent = "Freelancer Forum";
+
+const secondaryHeading = document.createElement("h2");
+secondaryHeading.textContent = "Available Freelancers";
+
+const table = document.createElement("table");
+
+const tableHeadingsnames = ["Name", "Specialty", "Price"];
+const tableHeaderRow = document.createElement("tr");
+
+tableHeadingsnames.forEach((header) => {
+    const tableHeading = document.createElement("th");
+    tableHeading.textContent = header;
+    tableHeaderRow.append(tableHeading);
+})
+
+freelancers.forEach((freelancer) => {
+    const rows = document.createElement("tr");
+    table.append(rows);
+
+    const name = document.createElement("td");
+    name.textContent = freelancer.name;
+    rows.append(name);
+
+    const specialty = document.createElement("td");
+    specialty.textContent = freelancer.specialty;
+    rows.append(specialty);
+
+    const price = document.createElement("td");
+    price.textContent = "$" + freelancer.price;
+    rows.append(price);
+});
+
+body.append(mainHeading);
+body.append(secondaryHeading)
+body.append(table);
+table.append(tableHeaderRow);
+
+
+/* function getSum(fee){
     let sum = 0;
     for(i = 0; i < fee.length; i++){
         sum += fee[i];
@@ -26,5 +63,4 @@ function avgStartPrice(fee){
     return avg;
 }
 
-console.log("$" + avgStartPrice(fee));
-
+console.log("$" + avgStartPrice(fee)); */
