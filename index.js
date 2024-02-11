@@ -12,13 +12,22 @@ const body = document.querySelector("body");
 const mainHeading = document.createElement("h1");
 mainHeading.textContent = "Freelancer Forum";
 
+body.append(mainHeading);
+
 const secondaryHeading = document.createElement("h2");
 secondaryHeading.textContent = "Available Freelancers";
+body.append(secondaryHeading);
+
+const avgCostHeading = document.createElement("h3");
+avgCostHeading.textContent = `The average cost of these services is ${avgCost}.`;
 
 const table = document.createElement("table");
+body.append(table);
 
 const tableHeadingsnames = ["Name", "Specialty", "Price"];
 const tableHeaderRow = document.createElement("tr");
+
+table.append(tableHeaderRow);
 
 tableHeadingsnames.forEach((header) => {
     const tableHeading = document.createElement("th");
@@ -42,25 +51,3 @@ freelancers.forEach((freelancer) => {
     price.textContent = "$" + freelancer.price;
     rows.append(price);
 });
-
-body.append(mainHeading);
-body.append(secondaryHeading)
-body.append(table);
-table.append(tableHeaderRow);
-
-
-/* function getSum(fee){
-    let sum = 0;
-    for(i = 0; i < fee.length; i++){
-        sum += fee[i];
-    }
-    return sum;
-}
-
-function avgStartPrice(fee){
-    const sum = getSum(fee);
-    const avg = Math.round((sum / fee.length));
-    return avg;
-}
-
-console.log("$" + avgStartPrice(fee)); */
