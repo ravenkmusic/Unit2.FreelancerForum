@@ -1,12 +1,16 @@
-const freelancers = ["John", "Ashley", "George", "Sabrina", "Kody", "Cynthia"];
-
-const specialty = ["Programmer", "Project Manager", "Scrum Master", "Data Analyst", "UI Designer", "Marketer"];
-
-const fee = [500, 600, 300, 800, 1000, 450];
+const freelancers = [{name: "John", specialty: "Programmer", price: 500}, 
+{name: "Ashley", specialty: "Project Manager", price: 600}, 
+{name: "George", specialty: "Scrum Master", price: 300}, 
+{name: "Sabrina", specialty: "Data Analyst", price: 800}, 
+{name: "Kody", specialty: "UI Designer", price: 1000}, 
+{name: "Cynthia", specialty: "Marketer", price: 450}
+];
+console.log(freelancers);
 
 /*const name = document.querySelector("name");
 const job = document.querySelector("specialty");
 const price = document.querySelector("price"); */
+const averagePrice = document.querySelector("#avg-price");
 
 function getSum(fee){
     let sum = 0;
@@ -22,4 +26,5 @@ function avgStartPrice(fee){
     return avg;
 }
 
-console.log(avgStartPrice(fee));
+console.log("$" + avgStartPrice(fee));
+
