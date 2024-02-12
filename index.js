@@ -5,9 +5,6 @@ const freelancers = [{name: "John", specialty: "Programmer", price: 500},
 {name: "Kody", specialty: "UI Designer", price: 1000}, 
 {name: "Cynthia", specialty: "Marketer", price: 450}
 ];
-const totalFreelancers = 6;
-
-console.log(freelancers);
 
 const body = document.querySelector("body");
 
@@ -30,13 +27,12 @@ headingsNames.textContent = "Name | Specialty |  Price";
 body.append(headingsNames);
 
 
-/* freelancers.forEach((freelancer) => {
+freelancers.forEach((freelancer) => {
   
-    const person = document.createElement("ul");
+    const person = document.createElement("li");
     person.textContent = `${freelancer.name} | ${freelancer.specialty} | $${freelancer.price}`; 
     body.append(person);
-    });
-*/
+});
 
 const intervalTime = setInterval(randomFreelancer, 3000);
 
@@ -45,5 +41,16 @@ function randomFreelancer () {
     const person = document.createElement("ul");
     person.innerHTML = `${freelancer.name} | ${freelancer.specialty} | $${freelancer.price}`;
     return freelancer;
-}
+} 
 
+function generateAvgPrice(freelancers){
+   let sum = 0;
+    for (const freelancer of freelancers){
+        sum += freelancer.price;
+        return sum;
+    }
+
+    let avg = (sum / freelancers.length);
+    console.log(avg);
+    return avg;
+}
