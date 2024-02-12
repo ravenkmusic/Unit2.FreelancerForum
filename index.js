@@ -5,6 +5,8 @@ const freelancers = [{name: "John", specialty: "Programmer", price: 500},
 {name: "Kody", specialty: "UI Designer", price: 1000}, 
 {name: "Cynthia", specialty: "Marketer", price: 450}
 ];
+const totalFreelancers = 6;
+
 console.log(freelancers);
 
 const body = document.querySelector("body");
@@ -18,36 +20,30 @@ const secondaryHeading = document.createElement("h2");
 secondaryHeading.textContent = "Available Freelancers";
 body.append(secondaryHeading);
 
-const avgCostHeading = document.createElement("h3");
+/* const avgCostHeading = document.createElement("h3");
 avgCostHeading.textContent = `The average cost of these services is ${avgCost}.`;
+body.append(avgCostHeading); */
 
-const table = document.createElement("table");
-body.append(table);
+const headingsNames = document.createElement("h3");
+headingsNames.textContent = "Name | Specialty |  Price";
 
-const tableHeadingsnames = ["Name", "Specialty", "Price"];
-const tableHeaderRow = document.createElement("tr");
+body.append(headingsNames);
 
-table.append(tableHeaderRow);
 
-tableHeadingsnames.forEach((header) => {
-    const tableHeading = document.createElement("th");
-    tableHeading.textContent = header;
-    tableHeaderRow.append(tableHeading);
-})
+/* freelancers.forEach((freelancer) => {
+  
+    const person = document.createElement("ul");
+    person.textContent = `${freelancer.name} | ${freelancer.specialty} | $${freelancer.price}`; 
+    body.append(person);
+    });
+*/
 
-freelancers.forEach((freelancer) => {
-    const rows = document.createElement("tr");
-    table.append(rows);
+const intervalTime = setInterval(randomFreelancer, 3000);
 
-    const name = document.createElement("td");
-    name.textContent = freelancer.name;
-    rows.append(name);
+function randomFreelancer () {
+    const freelancer = freelancers[Math.floor(Math.random()*freelancers.length)];
+    const person = document.createElement("ul");
+    person.innerHTML = `${freelancer.name} | ${freelancer.specialty} | $${freelancer.price}`;
+    return freelancer;
+}
 
-    const specialty = document.createElement("td");
-    specialty.textContent = freelancer.specialty;
-    rows.append(specialty);
-
-    const price = document.createElement("td");
-    price.textContent = "$" + freelancer.price;
-    rows.append(price);
-});
