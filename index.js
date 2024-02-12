@@ -27,30 +27,31 @@ headingsNames.textContent = "Name | Specialty |  Price";
 body.append(headingsNames);
 
 
-freelancers.forEach((freelancer) => {
-  
+/* freelancers.forEach((freelancer) => {
     const person = document.createElement("li");
     person.textContent = `${freelancer.name} | ${freelancer.specialty} | $${freelancer.price}`; 
     body.append(person);
-});
+}); */
 
-const intervalTime = setInterval(randomFreelancer, 3000);
-
-function randomFreelancer () {
+function randomFreelancer() {
     const freelancer = freelancers[Math.floor(Math.random()*freelancers.length)];
-    const person = document.createElement("ul");
-    person.innerHTML = `${freelancer.name} | ${freelancer.specialty} | $${freelancer.price}`;
+        const person = document.createElement("ul");
+        person.innerHTML = `${freelancer.name} | ${freelancer.specialty} | $${freelancer.price}`;
+        body.append(person);
     return freelancer;
 } 
 
-function generateAvgPrice(freelancers){
+function generateAvgPrice(){
    let sum = 0;
-    for (const freelancer of freelancers){
+   freelancers.forEach((freelancer) => {
         sum += freelancer.price;
+        console.log(sum);
         return sum;
-    }
+    });
 
     let avg = (sum / freelancers.length);
     console.log(avg);
     return avg;
 }
+
+const intervalTime = setInterval(randomFreelancer, 3000);
