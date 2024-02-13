@@ -22,7 +22,7 @@ body.append(secondaryHeading);
 const avgCostHeading = document.createElement("h3");
 body.append(avgCostHeading);
 
-const duplicateDisclaimer = document.createElement("h4");
+const duplicateDisclaimer = document.createElement("h5");
 body.append(duplicateDisclaimer);
 
 const headingsNames = document.createElement("h3");
@@ -49,7 +49,7 @@ function getAvgPrice() {
     const avg = Math.round(sum / unique.length);
     console.log(unique);
     avgCostHeading.textContent = `The average starting cost of the currently available services is $${avg}.`
-    duplicateDisclaimer.textContent = "*Duplicate freelancer listings are not included in price average.*"
+    duplicateDisclaimer.textContent = "*Duplicate freelancer listings are not included in price average. Refresh page for new potential listings*"
     return avg;
 }
 
