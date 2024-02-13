@@ -6,6 +6,8 @@ const freelancers = [{name: "John", specialty: "Programmer", price: 500},
 {name: "Cynthia", specialty: "Marketer", price: 450}
 ];
 
+const currentPrices = [];
+
 const body = document.querySelector("body");
 
 const mainHeading = document.createElement("h1");
@@ -17,41 +19,43 @@ const secondaryHeading = document.createElement("h2");
 secondaryHeading.textContent = "Available Freelancers";
 body.append(secondaryHeading);
 
-/* const avgCostHeading = document.createElement("h3");
-avgCostHeading.textContent = `The average cost of these services is ${avgCost}.`;
-body.append(avgCostHeading); */
+const avgCostHeading = document.createElement("h3");
+body.append(avgCostHeading);
+
+const duplicateDisclaimer = document.createElement("h4");
+body.append(duplicateDisclaimer);
 
 const headingsNames = document.createElement("h3");
-headingsNames.textContent = "Name | Specialty |  Price";
+headingsNames.textContent = "Name | Specialty |  Starting Price";
 
 body.append(headingsNames);
 
-
-/* freelancers.forEach((freelancer) => {
-    const person = document.createElement("li");
-    person.textContent = `${freelancer.name} | ${freelancer.specialty} | $${freelancer.price}`; 
-    body.append(person);
-}); */
-
-function randomFreelancer() {
-    const freelancer = freelancers[Math.floor(Math.random()*freelancers.length)];
-        const person = document.createElement("ul");
-        person.innerHTML = `${freelancer.name} | ${freelancer.specialty} | $${freelancer.price}`;
+function displayRandomFreelancer() {
+    const freelancer = freelancers[Math.floor(Math.random()* freelancers.length)];
+    const person = document.createElement("ul");    
+    person.innerHTML = `${freelancer.name} | ${freelancer.specialty} | $${freelancer.price}`;
+        currentPrices.push(freelancer.price);
         body.append(person);
-    return freelancer;
-} 
+        getAvgPrice();    
+}
 
-function generateAvgPrice(){
-   let sum = 0;
-   freelancers.forEach((freelancer) => {
-        sum += freelancer.price;
-        console.log(sum);
-        return sum;
-    });
+function getAvgPrice() {
+    let unique = [...new Set(currentPrices)];
+    let sum = 0;
+    for (i = 0; i < unique.length; i++){
+        sum += unique[i];
+    }
 
-    let avg = (sum / freelancers.length);
-    console.log(avg);
+    const avg = Math.round(sum / unique.length);
+    console.log(unique);
+    avgCostHeading.textContent = `The average starting cost of the currently available services is $${avg}.`
+    duplicateDisclaimer.textContent = "*Duplicate freelancer listings are not included in price average.*"
     return avg;
 }
 
-const intervalTime = setInterval(randomFreelancer, 3000);
+
+const intervalID = setInterval(displayRandomFreelancer, 2000);
+
+setTimeout(function(){
+    clearInterval(intervalID);
+}, 15000);
