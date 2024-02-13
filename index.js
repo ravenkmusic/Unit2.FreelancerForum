@@ -49,7 +49,7 @@ function getAvgPrice() {
     const avg = Math.round(sum / unique.length);
     console.log(unique);
     avgCostHeading.textContent = `The average starting cost of the currently available services is $${avg}.`
-    duplicateDisclaimer.textContent = "*Duplicate freelancer listings are not included in price average. Refresh page for new potential listings*"
+    duplicateDisclaimer.textContent = "*Duplicate freelancer listings are not included in price average. Refresh page for new potential listings.*"
     return avg;
 }
 
